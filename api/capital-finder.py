@@ -28,9 +28,7 @@ class handler(BaseHTTPRequestHandler):
             the_name = data[0]["name"]
             message = str(capital) + " is the capital of " + str(the_name)
         else:
-            message = "Make sure the name is correct !!!"
-
-
+            message = "Make sure you right ?capital=example  or ?country=example  is correct !!!"
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
