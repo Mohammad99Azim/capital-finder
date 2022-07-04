@@ -10,7 +10,6 @@ class handler(BaseHTTPRequestHandler):
         url_components = parse.urlsplit(s)
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
-        definitions = []
 
         if 'country' in dic:
             country = dic['country']
@@ -26,7 +25,7 @@ class handler(BaseHTTPRequestHandler):
             r = requests.get(url + capital)
             data = r.json()
 
-            the_name = data[0]["capital"]["name"]
+            the_name = data[0]["name"]
             message = str(capital) + " is the capital of " + str(the_name)
         else:
             message = "Make sure the name is correct !!!"
