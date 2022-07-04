@@ -11,6 +11,7 @@ class handler(BaseHTTPRequestHandler):
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
         definitions = []
+
         if 'country' in dic:
             country = dic['country']
             url = 'https://restcountries.com/v3.1/name/'
@@ -19,8 +20,18 @@ class handler(BaseHTTPRequestHandler):
 
             the_name = data[0]["capital"][0]
             message = "The capital of " + str(country) + " is " + str(the_name)
+        elif 'capital' in dic:
+            capital = dic['capital']
+            url = 'https://restcountries.com/v2/capital/'
+            r = requests.get(url + capital)
+            data = r.json()
+
+            the_name = data[0]["capital"]["name"]
+            message = str(capital) + " is the capital of " + str(the_name)
         else:
             message = "Make sure the name is correct !!!"
+
+
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
