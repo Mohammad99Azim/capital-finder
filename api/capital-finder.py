@@ -18,8 +18,7 @@ class handler(BaseHTTPRequestHandler):
             data = r.json()
 
             the_name = data[0]["capital"][0]
-            message = str(the_name)+" is the capital of "+str(country)
-
+            message = "The capital of " + str(country) + " is " + str(the_name)
         else:
             message = "Make sure the name is correct !!!"
 
